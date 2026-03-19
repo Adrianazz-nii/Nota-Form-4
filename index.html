@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Nota Form 4</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ms">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotaForm4</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #A1081E 50%, #FBB728 50%);
+      min-height: 100vh;
+      padding: 20px;
+      animation: gradientShift 15s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: slideDown 0.8s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    header p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      animation: fadeIn 1s ease 0.3s both;
+    }
+
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .subject-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .subject-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .subject-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .subject-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .subject-card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .subject-card:hover::before {
+      left: 100%;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .subject-card:active {
+      transform: translateY(-5px) scale(0.98);
+      transition: all 0.1s;
+    }
+
+    .subject-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      transition: all 0.4s ease;
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .subject-card:hover .subject-icon {
+      transform: scale(1.2) rotate(10deg);
+      animation: none;
+    }
+
+    .bio {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+    }
+
+    .fiz {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .kim {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .mat {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .subject-card h3 {
+      color: #333;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      transition: color 0.3s;
+    }
+
+    .subject-card:hover h3 {
+      color: #667eea;
+    }
+
+    .subject-card span {
+      color: #666;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .subject-card:hover span {
+      color: #764ba2;
+      font-weight: bold;
+    }
+
+    .chapter-list {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: slideInRight 0.5s ease;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .chapter-list h2 {
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #667eea;
+      position: relative;
+    }
+
+    .chapter-list h2::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      animation: expandWidth 1s ease forwards;
+    }
+
+    @keyframes expandWidth {
+      to {
+        width: 100px;
+      }
+    }
+
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInLeft 0.4s ease both;
+    }
+
+    .chapter-item:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .chapter-item:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .chapter-item:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .chapter-item:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .chapter-item:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .chapter-item:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .chapter-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+    }
+
+    .chapter-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .chapter-item:hover {
+      background: #e0e7ff;
+      transform: translateX(15px) scale(1.02);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .chapter-item:active {
+      transform: translateX(5px) scale(0.98);
+    }
+
+    .chapter-icon {
+      width: 50px;
+      height: 50px;
+      background: #fee2e2;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .chapter-item:hover .chapter-icon {
+      transform: rotate(360deg) scale(1.1);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .chapter-info h4 {
+      color: #333;
+      margin-bottom: 3px;
+      transition: color 0.3s;
+    }
+
+    .chapter-item:hover h4 {
+      color: #667eea;
+    }
+
+    .chapter-info p {
+      color: #666;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+
+    .chapter-item:hover p {
+      color: #764ba2;
+    }
+
+    .pdf-viewer {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      animation: zoomIn 0.5s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e5e7eb;
+      animation: fadeInDown 0.4s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #666;
+      margin-right: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
+      transform: translateY(-2px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    iframe:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Loading spinner */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+        animation: none;
+      }
+
+      .subjects {
+        grid-template-columns: 1fr;
+      }
+
+      .subject-card {
+        animation-delay: 0s !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>📚 NotaForm4 📚</h1>
+      <p>🌺 SemogaBerjaya 🌺</p>
+    </header>
+
+    <div class="subjects" id="subjectsView">
+      <div class="subject-card" onclick="showChapters('biologi')">
+        <div class="subject-icon bio">🧬</div>
+        <h3>Biologi</h3>
+        <span>15 Bab</span>
+      </div>
+
+      <div class="subject-card" onclick="showChapters('fizik')">
+        <div class="subject-icon fiz">⚡</div>
+        <h3>Fizik</h3>
+        <span>7 Bab</span>
+      </div>
+
+      <div class="subject-card" onclick="showChapters('kimia')">
+        <div class="subject-icon kim">⚗️</div>
+        <h3>Kimia</h3>
+        <span>8 Bab</span>
+      </div>
+
+      <div class="subject-card" onclick="showChapters('Sejarah')">
+        <div class="subject-icon mat">📜</div>
+        <h3>Sejarah</h3>
+        <span>10 Bab</span>
+      </div>
+    </div>
+
+    <div class="chapter-list hidden" id="chaptersView">
+      <button class="btn btn-secondary" onclick="backToSubjects()">← Kembali</button>
+      <h2 id="subjectTitle">Senarai Bab</h2>
+      <div id="chaptersList"></div>
+    </div>
+
+    <div class="pdf-viewer hidden" id="pdfView">
+      <div class="pdf-header">
+        <div>
+          <span id="pdfSubject" style="color: #667eea; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Subjek</span>
+          <h3 id="pdfTitle" style="margin-top: 5px; color: #333;">Tajuk Bab</h3>
+        </div>
+        <div>
+          <a id="downloadLink" href="#" target="_blank" class="btn btn-primary">📥 Muat Turun</a>
+          <button class="btn btn-secondary" onclick="closePdf()">✕ Tutup</button>
+        </div>
+      </div>
+      <div id="pdfContainer"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const notesData = {
+      biologi: [{
+          id: 1,
+          title: "Bab 1 - Pengenalan kepada Biologi dan Peraturan Makmal",
+          desc: "",
+          url: "https://drive.google.com/file/d/1T7xO8RVutE91TZkuV-psdA6KH-8Xbgbg/view"
+        },
+        {
+          id: 2,
+          title: "Bab 2 - Biologi Sel dan Organisasi Sel",
+          desc: "",
+          url: "https://drive.google.com/file/d/1J0U1nHC0AgBx4HWQ1qf84AzC0UTV1pFg/view"
+        },
+        {
+          id: 3,
+          title: "Bab 3 - Pergerakan Bahan Merentasi Membran Plasma",
+          desc: "",
+          url: "https://drive.google.com/file/d/1xkwIVphlcWL4aKrfYwPOGAdXX41IEfC8/view?pli=1"
+        },
+        {
+          id: 4,
+          title: "Bab 4 - Komposisi Kimia Dalam Sel",
+          desc: "",
+          url: "https://drive.google.com/file/d/1P9MZ_DoF16lFWtkndy0fhSBaJ05cHaSf/view"
+        },
+        {
+          id: 5,
+          title: "Bab 5 - Metabolisme dan Enzim",
+          desc: "",
+          url: "https://drive.google.com/file/d/1FDiSDXu7jzTvPaBUxwmJ6uq1ma1yYbGq/view"
+        },
+        {
+          id: 6,
+          title: "Bab 6 - Pembahagian Sel",
+          desc: "",
+          url: "https://drive.google.com/file/d/1p81IUBQVtQCuzQVwfLHvZ1of-UrQsIlV/view?usp=sharing"
+        },
+        {
+          id: 7,
+          title: "Bab 7 - Respirasi Sel",
+          desc: "",
+          url: "https://drive.google.com/file/d/1GpaUQRbRyY7PrVGclYnhY7akuOzJdUnS/view"
+        },
+        {
+          id: 8,
+          title: "Bab 8 - Sistem Respirasi dalam Manusia dan Haiwan",
+          desc: "",
+          url: "https://drive.google.com/file/d/1nHlmz8-4qK9H1TzvVZ2FGcKT9jkOSf4c/view"
+        },
+        {
+          id: 9,
+          title: "Bab 9 - Sistem Respirasi dalam Manusia dan Haiwan",
+          desc: "",
+          url: "https://drive.google.com/file/d/1n56eLWp03M61JajDD9C5rC5__HVTOsWn/view"
+        },
+        {
+          id: 10,
+          title: "Bab 10 - Pengangkutan dalam Manusia dan Haiwan",
+          desc: "",
+          url: "https://drive.google.com/file/d/1SgsgZ-RcsCG_Ybp1t3zvH7tu9KOC1Kqm/view"
+        },
+        {
+          id: 11,
+          title: "Bab 11 - Keimunan Manusia",
+          desc: "",
+          url: "https://drive.google.com/file/d/18QkS-JJQGpqbO4WOYtCgjQXP-DdxUfxZ/view"
+        },
+        {
+          id: 12,
+          title: "Bab 12 - Koordinasi dan Gerak Balas dalam Manusia",
+          desc: "",
+          url: "https://drive.google.com/file/d/1eNOjWZKUERqgQWJ5ai3bxiq96xap8XMe/view"
+        },
+        {
+          id: 13,
+          title: "Bab 13 - Homeostasis dan Sistem Urinari Manusia",
+          desc: "",
+          url: "https://drive.google.com/file/d/1nHlmz8-4qK9H1TzvVZ2FGcKT9jkOSf4c/view"
+        },
+        {
+          id: 14,
+          title: "Bab 14 - Sokongan dan Pergerakan Dalam Manusia",
+          desc: "",
+          url: "https://drive.google.com/file/d/1YIhnNiTEO7pGdGrnEe4qs69dhF3gg2OC/view"
+        },
+        {
+          id: 15,
+          title: "Bab 15 - Pembiakan Seks, Perkembagan dan Pertumbuhan dalam Manusia dan Haiwan",
+          desc: "",
+          url: "https://drive.google.com/file/d/14EkrDt9W1p8TWUwx9UkFcMGsIiPZSaiA/view"
+        }
+      ],
+      fizik: [{
+          id: 1,
+          title: "Bab 1 - Pengukuran",
+          desc: "",
+          url: "https://drive.google.com/file/d/1OlT8d5SYeN7lpoVNJcdg7wusivTVRpuQ/view"
+        },
+        {
+          id: 2,
+          title: "Bab 2 - Daya dan Gerakan I",
+          desc: "",
+          url: "https://drive.google.com/file/d/1Kyyz8cC06xh5NzslrtsFCtMQlObccQOG/view"
+        },
+        {
+          id: 3,
+          title: "Bab 3 - Kegravitian",
+          desc: "",
+          url: "https://drive.google.com/file/d/1uUFQLfssIacPpSVr093MXQ_P5qbLq2Xb/view"
+        },
+        {
+          id: 4,
+          title: "Bab 4 - Haba",
+          desc: "",
+          url: "https://drive.google.com/file/d/1QamoAQ9SqJqCgYQw_txitzuQHg5plt6i/view"
+        },
+        {
+          id: 5,
+          title: "Bab 5 - Gelombang",
+          desc: "",
+          url: "https://drive.google.com/file/d/1S5pdSnxvhmUHwh_Uvy_5FVUFuAc96HDt/view"
+        },
+        {
+          id: 6,
+          title: "Bab 6 - Cahaya dan Optik",
+          desc: "",
+          url: "https://drive.google.com/file/d/1V_7WxLfRj2xf9eHdH8ZSy_ajwSRQL_Qm/view"
+        }
+      ],
+      kimia: [{
+          id: 1,
+          title: "Bab 1 - Pengenalan kepada Kimia",
+          desc: "",
+          url: "https://drive.google.com/file/d/119m7RoCYlxo3uTXyKOfKvLskzMv4xRtw/view"
+        },
+        {
+          id: 2,
+          title: "Bab 2 - Jirim dan Struktur Atom",
+          desc: "",
+          url: "https://drive.google.com/file/d/1_Z1LmdMRUkbcKVihbb-MT8s1ddy_uQvY/view"
+        },
+        {
+          id: 3,
+          title: "Bab 3 -Konsep Mol, Formula dan Persamaan Kimia",
+          desc: "",
+          url: "https://drive.google.com/file/d/1k_H_wHlO7F3H7kx-XDiZn_DwWxZo2lhN/view"
+        },
+        {
+          id: 4,
+          title: "Bab 4 - Jadual Berkala",
+          desc: "",
+          url: "https://drive.google.com/file/d/1OQF4vzDr2OA66p-HrhhUKXj8_405mv19/view"
+        },
+        {
+          id: 5,
+          title: "Bab 5 - Ikatan Kimia",
+          desc: "",
+          url: "https://drive.google.com/file/d/1zYXFatdajcOupk750nMxI-0D5qn1jFXM/view"
+        },
+        {
+          id: 6,
+          title: "Bab 6 - Asid, Bes dan Garam",
+          desc: "",
+          url: "https://drive.google.com/file/d/1c8I8acrABkifbDkplRz6Hajy8lUqDh8i/view"
+        },
+        {
+          id: 7,
+          title: "Bab 7 - Kadar Tindak Balas",
+          desc: "",
+          url: "https://drive.google.com/file/d/1KEh_9gNZhoVkN5Hs7JI2SVF6RA9aLUNj/view"
+        },
+        {
+          id: 8,
+          title: "Bab 8 - Bahan Buatan dalam Industri",
+          desc: "",
+          url: "https://drive.google.com/file/d/1mgjWbRaxKuej--5HlQyldSX6uRQJT2mY/view"
+        }
+      ],
+      Sejarah: [{
+          id: 1,
+          title: "Bab 1 - Warisan Negara Bangsa",
+          desc: "",
+          url: "https://drive.google.com/file/d/1ZFFEzRmH7DyEgZFUhJlkk_k77qGSYCyS/view?usp=drivesdk"
+        },
+        {
+          id: 2,
+          title: "Bab 2 - Kebangkitan Nasionalisme",
+          desc: "",
+          url: "https://drive.google.com/file/d/1jNZ5_REcmg2EfP8yYaT8CmFLzrnGpdqb/view"
+        },
+        {
+          id: 3,
+          title: "Bab 3 - Konflik Dunia dan Pendudukan Jepun di Negara Kita",
+          desc: "",
+          url: "https://drive.google.com/file/d/1NVH5d6HjwCRX3i2SBe4f5chtXvIG-6cO/view"
+        },
+        {
+          id: 4,
+          title: "Bab 4 - Era Peralihan Kuasa British di Negara Kita",
+          desc: "",
+          url: "https://drive.google.com/file/d/1keCrYxdxFYhSoVRkgNHulT-KdNkXrW2l/view"
+        },
+        {
+          id: 5,
+          title: "Bab 5 - Persekutuan Tanah Melayu",
+          desc: "",
+          url: "https://drive.google.com/file/d/1dgsKq8MnZT2XTZQ1EfB9DtLtzSKwS32_/view"
+        },
+        {
+          id: 6,
+          title: "Bab 6 - Ancaman Komunis dan Pengisytiharan Darurat",
+          desc: "",
+          url: "https://drive.google.com/file/d/10lZmyGl963EB3svCp6auEvLNpLNoATSw/view"
+        },
+        {
+          id: 7,
+          title: "Bab 7 - Usaha ke Arah Kemerdekaan",
+          desc: "",
+          url: "https://drive.google.com/file/d/1pA6yVxY2mfJoMvvWk5YFG5sRtTFnq_oM/view"
+        },
+        {
+          id: 8,
+          title: "Bab 8 - Pilihan Raya",
+          desc: "",
+          url: "https://drive.google.com/file/d/1n9-YEb0QAQhNatc9XtkLTTcZwGGmLvTL/view"
+        },
+        {
+          id: 9,
+          title: "Bab 9 - Perlembagaan Persekutuan Tanah Melayu 1957",
+          desc: "",
+          url: "https://drive.google.com/file/d/1uUvIIxaMQM2qKGrfHVbzHCbp5yTWymtL/view"
+        },
+        {
+          id: 10,
+          title: "Bab 10 - Pemasyhuran Kemerdekaan",
+          desc: "",
+          url: "https://drive.google.com/file/d/1MayrzMeXsbncYT7VU-dbIBWEGOWfnznR/view"
+        },
+      ]
+    };
+    const subjectNames = {
+      biologi: "Biologi",
+      fizik: "Fizik",
+      kimia: "Kimia",
+      Sejarah: "Sejarah"
+    };
+
+    function showChapters(subject) {
+      document.getElementById('subjectsView').classList.add('hidden');
+      document.getElementById('chaptersView').classList.remove('hidden');
+      document.getElementById('subjectTitle').textContent = subjectNames[subject];
+      const list = document.getElementById('chaptersList');
+      const chapters = notesData[subject];
+      list.innerHTML = chapters.map((ch, index) => `
+                <div class="chapter-item" onclick="openPdf('${subject}', ${ch.id})" style="animation-delay: ${index * 0.1}s">
+                    <div class="chapter-icon">📄</div>
+                    <div class="chapter-info">
+                        <h4>${ch.title}</h4>
+                        <p>${ch.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+    }
+
+    function backToSubjects() {
+      document.getElementById('chaptersView').classList.add('hidden');
+      document.getElementById('pdfView').classList.add('hidden');
+      document.getElementById('subjectsView').classList.remove('hidden');
+    }
+
+    function openPdf(subject, id) {
+      const chapter = notesData[subject].find(c => c.id === id);
+      if (!chapter) return;
+      document.getElementById('chaptersView').classList.add('hidden');
+      document.getElementById('pdfView').classList.remove('hidden');
+      document.getElementById('pdfSubject').textContent = subjectNames[subject];
+      document.getElementById('pdfTitle').textContent = chapter.title;
+      document.getElementById('downloadLink').href = chapter.url;
+      let embedUrl = chapter.url;
+      if (chapter.url.includes('drive.google.com')) {
+        const fileId = chapter.url.match(/[-\w]{25,}/);
+        if (fileId) {
+          embedUrl = `https://drive.google.com/file/d/${fileId[0]}/preview`;
+        }
+      }
+      document.getElementById('pdfContainer').innerHTML = `
+                <iframe src="${embedUrl}" onload="this.style.opacity='1'" style="opacity:0; transition:opacity 0.5s"></iframe>
+            `;
+    }
+
+    function closePdf() {
+      document.getElementById('pdfView').classList.add('hidden');
+      document.getElementById('chaptersView').classList.remove('hidden');
+      document.getElementById('pdfContainer').innerHTML = '';
+    }
+  </script>
+
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
